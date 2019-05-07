@@ -23,16 +23,22 @@ function extraerDinero() {
     var saldoAnterior = saldoCuenta;
     var sumaDinero = prompt("Indique una cantidad a retirar");
     sumaDinero = parseInt(sumaDinero);
-    if(sumaDinero == Number(sumaDinero) && (sumaDinero <= saldoCuenta)) {
-        if((sumaDinero <= limiteExtraccion)){
+    if(sumaDinero == Number(sumaDinero) && (sumaDinero <= limiteExtraccion)) 
+    {
+        if((sumaDinero <= saldoCuenta))
+        {
             saldoCuenta -= sumaDinero;
         actualizarSaldoEnPantalla();
         alert("Usted extrajo: " + sumaDinero 
               + "\nSu saldo anterior: " + saldoAnterior
               + "\nSu saldo actual: " + saldoCuenta);
+        } else
+        {
+            alert("La cuenta no posee fondos suficientes");
         }
-    } else {
-        alert("La cuenta no posee fondos suficientes");
+    } else 
+    {
+        alert("Usted ha superado el limite de extracción");
     }
 }
 
