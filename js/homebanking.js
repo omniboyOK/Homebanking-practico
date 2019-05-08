@@ -12,6 +12,12 @@ window.onload = function() {
 }
 
 //Funciones que tenes que completar
+function ingresarSuma(){
+    var sumaDinero = prompt("Indique la cantidad");    
+    sumaDinero = parseInt(sumaDinero);
+    return sumaDinero;
+}
+
 function cambiarLimiteDeExtraccion() {
     var nuevoLimite = prompt("Ingrese el nuevo limite de extracción");
     nuevoLimite = parseInt(nuevoLimite);
@@ -21,9 +27,9 @@ function cambiarLimiteDeExtraccion() {
 
 function extraerDinero() {
     var saldoAnterior = saldoCuenta;
-    var sumaDinero = prompt("Indique una cantidad a retirar");
-    sumaDinero = parseInt(sumaDinero);
-    if(sumaDinero == Number(sumaDinero) && (sumaDinero <= limiteExtraccion)) 
+    var sumaDinero = ingresarSuma();
+    if(sumaDinero % 100 == 0){
+        if(sumaDinero == Number(sumaDinero) && (sumaDinero <= limiteExtraccion)) 
     {
         if((sumaDinero <= saldoCuenta))
         {
@@ -40,12 +46,13 @@ function extraerDinero() {
     {
         alert("Usted ha superado el limite de extracción");
     }
+    } else alert("Este cajero solo entrega billetes de 100");
 }
+    
 
 function depositarDinero() {
     var saldoAnterior = saldoCuenta;
-    var sumaDinero = prompt("Indique una cantidad a ingresar");
-    sumaDinero = parseInt(sumaDinero);
+    var sumaDinero = ingresarSuma();
     if(sumaDinero == Number(sumaDinero)){
         saldoCuenta += sumaDinero;
         actualizarSaldoEnPantalla();
