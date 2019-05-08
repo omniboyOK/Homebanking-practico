@@ -2,6 +2,10 @@
 var nombreUsuario = "";
 var saldoCuenta = 4000;
 var limiteExtraccion = 1000;
+var valorAgua = 350;
+var valorLuz = 210;
+var valorInternet = 570;
+var valorTelefono = 425;
 
 //Ejecución de las funciones que actualizan los valores de las variables en el HTML.
 window.onload = function() {
@@ -65,7 +69,8 @@ function depositarDinero() {
 }
 
 function pagarServicio() {
-
+    var elegirServicio = prompt("Eliga el servicio que desea pagar:\n"
+                               +"1- Agua\n"+"2- Teléfono\n"+"3- Luz\n"+"4- Internet")
 }
 
 function transferirDinero() {
