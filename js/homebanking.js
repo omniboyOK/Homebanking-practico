@@ -16,10 +16,47 @@ window.onload = function() {
 }
 
 //Funciones que tenes que completar
-function ingresarSuma(){
+//Funcion para consultar una suma de dinero determinada por el usuario
+function consultarSuma(){
     var sumaDinero = prompt("Indique la cantidad");    
     sumaDinero = parseInt(sumaDinero);
     return sumaDinero;
+}
+
+//Función para sustraer un valor de la cuenta
+function restarSuma(sumaDinero, tipoExtraccion, servicio){
+    var saldoAnterior = saldoCuenta;
+//Si la suma de dinero no supera al saldo de la cuenta, evalua el caso
+    if((sumaDinero <= saldoCuenta)){
+        switch(tipoExtraccion){
+            case "extraccion" :
+                if(sumaDinero % 100 == 0){
+                    if(sumaDinero == Number(sumaDinero) && (sumaDinero <= limiteExtraccion)){
+                    saldoCuenta -= sumaDinero;
+                actualizarSaldoEnPantalla();
+                alert("Usted extrajo: " + sumaDinero 
+                    + "\nSu saldo anterior: " + saldoAnterior
+                    + "\nSu saldo actual: " + saldoCuenta);
+                    } else alert("Usted ha superado el limite de extracción");
+                } else alert("Este cajero solo entrega billetes de 100");                
+                break;
+
+            case "pagarServicio" :
+                saldoCuenta -= sumaDinero;
+                alert("Usted pagó el servicio "+ servicio 
+                    + "\nSu saldo anterior: " + saldoAnterior
+                    + "\nDinero descontado: " + sumaDinero
+                    + "\nSu saldo actual: " + saldoCuenta);
+                actualizarSaldoEnPantalla();
+                break;
+        }
+    }else{
+        alert("La cuenta no posee fondos suficientes");
+    }
+}
+//Función para ingresar un valor a la cuenta
+function ingresar(){
+    
 }
 
 function cambiarLimiteDeExtraccion() {
@@ -30,33 +67,13 @@ function cambiarLimiteDeExtraccion() {
 }
 
 function extraerDinero() {
-    var saldoAnterior = saldoCuenta;
-    var sumaDinero = ingresarSuma();
-    if(sumaDinero % 100 == 0){
-        if(sumaDinero == Number(sumaDinero) && (sumaDinero <= limiteExtraccion)) 
-    {
-        if((sumaDinero <= saldoCuenta))
-        {
-            saldoCuenta -= sumaDinero;
-        actualizarSaldoEnPantalla();
-        alert("Usted extrajo: " + sumaDinero 
-              + "\nSu saldo anterior: " + saldoAnterior
-              + "\nSu saldo actual: " + saldoCuenta);
-        } else
-        {
-            alert("La cuenta no posee fondos suficientes");
-        }
-    } else 
-    {
-        alert("Usted ha superado el limite de extracción");
-    }
-    } else alert("Este cajero solo entrega billetes de 100");
+    var sumaDinero = consultarSuma();
+    restarSuma(sumaDinero, "extraccion");
 }
-    
 
 function depositarDinero() {
     var saldoAnterior = saldoCuenta;
-    var sumaDinero = ingresarSuma();
+    var sumaDinero = consultarSuma();
     if(sumaDinero == Number(sumaDinero)){
         saldoCuenta += sumaDinero;
         actualizarSaldoEnPantalla();
@@ -69,8 +86,31 @@ function depositarDinero() {
 }
 
 function pagarServicio() {
+    var sumaDinero = 0;
+    var servicio;
     var elegirServicio = prompt("Eliga el servicio que desea pagar:\n"
-                               +"1- Agua\n"+"2- Teléfono\n"+"3- Luz\n"+"4- Internet")
+                               +"1- Agua\n"+"2- Teléfono\n"+"3- Luz\n"+"4- Internet");
+    switch(elegirServicio){
+        case "1" : 
+        sumaDinero = valorAgua;
+        servicio = "Agua";
+        break;
+        return sumaDinero, servicio;
+        case 2 : 
+        sumaDinero = valorTelefono;
+        servicio = "Telefono";
+        break;
+        case 3 : 
+        sumaDinero = valorLuz;
+        servicio = "Luz";
+        break;
+        case 4 : 
+        sumaDinero = valorInternet;
+        servicio = "Internet";
+        break;
+        default : alert("El servicio seleccionado no existe");
+    };
+    restarSuma(sumaDinero, "pagarServicio", servicio);
 }
 
 function transferirDinero() {
