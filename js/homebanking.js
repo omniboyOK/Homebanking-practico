@@ -96,21 +96,24 @@ function pagarServicio() {
         servicio = "Agua";
         break;
         return sumaDinero, servicio;
-        case 2 : 
+        case "2" : 
         sumaDinero = valorTelefono;
         servicio = "Telefono";
         break;
-        case 3 : 
+        case "3" : 
         sumaDinero = valorLuz;
         servicio = "Luz";
         break;
-        case 4 : 
+        case "4" : 
         sumaDinero = valorInternet;
         servicio = "Internet";
         break;
         default : alert("El servicio seleccionado no existe");
+        servicio = null;
     };
-    restarSuma(sumaDinero, "pagarServicio", servicio);
+    if(servicio != null){
+        restarSuma(sumaDinero, "pagarServicio", servicio);
+    }
 }
 
 function transferirDinero() {
