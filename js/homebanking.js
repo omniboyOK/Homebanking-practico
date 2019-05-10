@@ -21,9 +21,7 @@ window.onload = function() {
 //Funcion para consultar una suma de dinero determinada por el usuario
 function consultarSuma(){
     var sumaDinero = prompt("Indique la cantidad");    
-    if(isNaN(sumaDinero)){
-        return sumaDinero;
-    } else alert("El valor ingresado no es valido")    
+    return sumaDinero;
 }
 
 //Función para sustraer un valor de la cuenta
@@ -52,6 +50,7 @@ function restarSuma(sumaDinero, tipoExtraccion, servicio){
                     + "\nSu saldo actual: " + saldoCuenta);
                 actualizarSaldoEnPantalla();
                 break;
+
             case "transferir" :
                 var cuentaIngresada = prompt("Ingresar cuenta a transferir");
                 if(cuentaIngresada == cuentaAmiga1 || cuentaIngresada == cuentaAmiga2){
@@ -71,21 +70,23 @@ function ingresar(){
 
 function cambiarLimiteDeExtraccion() {
     var nuevoLimite = prompt("Ingrese el nuevo limite de extracción");
-    if(nuevoLimite != null){
+    if(!isNaN(nuevoLimite)){
         limiteExtraccion = nuevoLimite;
         actualizarLimiteEnPantalla();
-    }
+    } else alert("El valor ingresado no es valido");
 }
 
 function extraerDinero() {
     var sumaDinero = consultarSuma();
-    restarSuma(sumaDinero, "extraccion");
+    if(!isNaN(sumaDinero)){
+        restarSuma(sumaDinero, "extraccion");
+    } else alert("El valor ingresado no es valido");
 }
 
 function depositarDinero() {
     var saldoAnterior = saldoCuenta;
     var sumaDinero = consultarSuma();
-    if(sumaDinero != null){
+    if(!isNaN(sumaDinero)){
         saldoCuenta += sumaDinero;
         actualizarSaldoEnPantalla();
         alert("Usted deposito: " + sumaDinero 
@@ -129,8 +130,9 @@ function pagarServicio() {
 
 function transferirDinero() {
     var sumaDinero = consultarSuma();
-    restarSuma(sumaDinero, "transferir");
-
+    if(!isNaN(sumaDinero)){
+        restarSuma(sumaDinero, "transferir");
+    } else alert("El valor ingresado no es valido");
 }
 
 function iniciarSesion() {
