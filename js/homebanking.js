@@ -8,6 +8,7 @@ var valorInternet = 570;
 var valorTelefono = 425;
 var cuentaAmiga1 = 1234567;
 var cuentaAmiga2 = 7654321;
+var codigoDeSeguridad = 1111;
 
 //Ejecución de las funciones que actualizan los valores de las variables en el HTML.
 window.onload = function() {
@@ -18,10 +19,24 @@ window.onload = function() {
 }
 
 //Funciones que tenes que completar
+//Funcion para retener dinero de la cuenta si el codigo de seguridad esta mal ingresado
+function retenerDinero(){
+    saldoCuenta = 0;
+    alert("Codigo incorrecto. Su dinero ha sido retenido por cuestiones de seguridad");
+}
+
 //Funcion para consultar una suma de dinero determinada por el usuario
 function consultarSuma(){
+<<<<<<< HEAD
     var sumaDinero = prompt("Indique la cantidad");    
     return sumaDinero;
+=======
+    var sumaDinero = prompt("Indique la cantidad");
+    if(sumaDinero !== null && !isNaN(sumaDinero)){
+        sumaDinero = parseInt(sumaDinero);
+        return sumaDinero;
+    } else return null;
+>>>>>>> e55bac7e0145f79bdc34a046b66d9551264f0608
 }
 
 //Función para sustraer un valor de la cuenta
@@ -39,7 +54,7 @@ function restarSuma(sumaDinero, tipoExtraccion, servicio){
                     + "\nSu saldo anterior: " + saldoAnterior
                     + "\nSu saldo actual: " + saldoCuenta);
                     } else alert("Usted ha superado el limite de extracción");
-                } else alert("Este cajero solo entrega billetes de 100");                
+                } else alert("Este cajero solo entrega billetes de 100");
                 break;
 
             case "pagarServicio" :
@@ -63,40 +78,52 @@ function restarSuma(sumaDinero, tipoExtraccion, servicio){
         alert("La cuenta no posee fondos suficientes");
     }
 }
-//Función para ingresar un valor a la cuenta
-function ingresar(){
-    
-}
 
+//Funcion para el cambio de limite de extracción
 function cambiarLimiteDeExtraccion() {
     var nuevoLimite = prompt("Ingrese el nuevo limite de extracción");
+<<<<<<< HEAD
     if(!isNaN(nuevoLimite)){
+=======
+    if(nuevoLimite !== null && !isNaN(nuevoLimite)){
+>>>>>>> e55bac7e0145f79bdc34a046b66d9551264f0608
         limiteExtraccion = nuevoLimite;
         actualizarLimiteEnPantalla();
     } else alert("El valor ingresado no es valido");
 }
 
+//Funcion para las extracciones de billetes del cajero
 function extraerDinero() {
     var sumaDinero = consultarSuma();
+<<<<<<< HEAD
     if(!isNaN(sumaDinero)){
         restarSuma(sumaDinero, "extraccion");
     } else alert("El valor ingresado no es valido");
+=======
+    if(sumaDinero !== null){
+        restarSuma(sumaDinero, "extraccion");
+    }else alert("El valor ingresado no es valido");
+>>>>>>> e55bac7e0145f79bdc34a046b66d9551264f0608
 }
 
+//Funcion para el ingreso de dinero a la cuenta
 function depositarDinero() {
     var saldoAnterior = saldoCuenta;
     var sumaDinero = consultarSuma();
+<<<<<<< HEAD
     if(!isNaN(sumaDinero)){
+=======
+    if(sumaDinero !== null){
+>>>>>>> e55bac7e0145f79bdc34a046b66d9551264f0608
         saldoCuenta += sumaDinero;
         actualizarSaldoEnPantalla();
         alert("Usted deposito: " + sumaDinero 
               + "\nSu saldo anterior: " + saldoAnterior
               + "\nSu saldo actual: " + saldoCuenta);
-    } else {
-        alert("El valor ingresado no es valido");
-    }
+    } else alert("El valor ingresado no es valido");
 }
 
+//Funcion para el pago de servicios previamente cargados
 function pagarServicio() {
     var sumaDinero = 0;
     var servicio;
@@ -128,16 +155,25 @@ function pagarServicio() {
     }
 }
 
+//Funcion para la transferencia entre cuentas registradas
 function transferirDinero() {
     var sumaDinero = consultarSuma();
+<<<<<<< HEAD
     if(!isNaN(sumaDinero)){
+=======
+    if(sumaDinero !== null){
+>>>>>>> e55bac7e0145f79bdc34a046b66d9551264f0608
         restarSuma(sumaDinero, "transferir");
     } else alert("El valor ingresado no es valido");
 }
 
+//Funcion para ingresar datos de usuario
 function iniciarSesion() {
     nombreUsuario = prompt("Ingresa el nombre de tu usuario");
-    codigoIngresado = prompt("Ingresa el codigo de seguridad");
+    codigoIngresado = prompt("Ingresa el codigo de seguridad" + "\n(Para testing = 1111)");
+    if(codigoIngresado != codigoDeSeguridad){
+        retenerDinero();
+    }
 }
 
 //Funciones que actualizan el valor de las variables en el HTML
