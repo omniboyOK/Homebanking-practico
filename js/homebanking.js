@@ -8,6 +8,7 @@ var valorInternet = 570;
 var valorTelefono = 425;
 var cuentaAmiga1 = 1234567;
 var cuentaAmiga2 = 7654321;
+var codigoDeSeguridad = 1111;
 
 //Ejecución de las funciones que actualizan los valores de las variables en el HTML.
 window.onload = function() {
@@ -18,12 +19,18 @@ window.onload = function() {
 }
 
 //Funciones que tenes que completar
+//Funcion para retener dinero de la cuenta si el codigo de seguridad esta mal ingresado
+function retenerDinero(){
+    saldoCuenta = 0;
+    alert("Codigo incorrecto. Su dinero ha sido retenido por cuestiones de seguridad");
+}
+
 //Funcion para consultar una suma de dinero determinada por el usuario
 function consultarSuma(){
     var sumaDinero = prompt("Indique la cantidad");    
     if(isNaN(sumaDinero)){
         return sumaDinero;
-    } else alert("El valor ingresado no es valido")    
+    } else alert("El valor ingresado no es valido"); 
 }
 
 //Función para sustraer un valor de la cuenta
@@ -135,7 +142,10 @@ function transferirDinero() {
 
 function iniciarSesion() {
     nombreUsuario = prompt("Ingresa el nombre de tu usuario");
-    codigoIngresado = prompt("Ingresa el codigo de seguridad");
+    codigoIngresado = prompt("Ingresa el codigo de seguridad" + "\n(Para testing = 1111)");
+    if(codigoIngresado != codigoDeSeguridad){
+        retenerDinero();
+    }
 }
 
 //Funciones que actualizan el valor de las variables en el HTML
