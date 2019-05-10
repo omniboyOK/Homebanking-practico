@@ -27,7 +27,7 @@ function retenerDinero(){
 
 //Funcion para consultar una suma de dinero determinada por el usuario
 function consultarSuma(){
-    var sumaDinero = prompt("Indique la cantidad");    
+    var sumaDinero = prompt("Indique la cantidad");
     if(isNaN(sumaDinero)){
         return sumaDinero;
     } else alert("El valor ingresado no es valido"); 
@@ -48,7 +48,7 @@ function restarSuma(sumaDinero, tipoExtraccion, servicio){
                     + "\nSu saldo anterior: " + saldoAnterior
                     + "\nSu saldo actual: " + saldoCuenta);
                     } else alert("Usted ha superado el limite de extracción");
-                } else alert("Este cajero solo entrega billetes de 100");                
+                } else alert("Este cajero solo entrega billetes de 100");
                 break;
 
             case "pagarServicio" :
@@ -70,10 +70,6 @@ function restarSuma(sumaDinero, tipoExtraccion, servicio){
     }else{
         alert("La cuenta no posee fondos suficientes");
     }
-}
-//Función para ingresar un valor a la cuenta
-function ingresar(){
-    
 }
 
 function cambiarLimiteDeExtraccion() {
