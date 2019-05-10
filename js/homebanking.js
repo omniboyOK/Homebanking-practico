@@ -56,6 +56,7 @@ function restarSuma(sumaDinero, tipoExtraccion, servicio){
                 if(cuentaIngresada == cuentaAmiga1 || cuentaIngresada == cuentaAmiga2){
                     saldoCuenta -= sumaDinero;
                     actualizarSaldoEnPantalla();
+                    alert("Transferencia exitosa");
                 }else alert("Solo puede transferir a una cuenta amiga");
         }
     }else{
