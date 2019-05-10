@@ -21,8 +21,9 @@ window.onload = function() {
 //Funcion para consultar una suma de dinero determinada por el usuario
 function consultarSuma(){
     var sumaDinero = prompt("Indique la cantidad");    
-    sumaDinero = parseInt(sumaDinero);
-    return sumaDinero;
+    if(isNaN(sumaDinero)){
+        return sumaDinero;
+    } else alert("El valor ingresado no es valido")    
 }
 
 //Función para sustraer un valor de la cuenta
@@ -33,7 +34,7 @@ function restarSuma(sumaDinero, tipoExtraccion, servicio){
         switch(tipoExtraccion){
             case "extraccion" :
                 if(sumaDinero % 100 == 0){
-                    if(sumaDinero == Number(sumaDinero) && (sumaDinero <= limiteExtraccion)){
+                    if(sumaDinero <= limiteExtraccion){
                     saldoCuenta -= sumaDinero;
                 actualizarSaldoEnPantalla();
                 alert("Usted extrajo: " + sumaDinero 
@@ -70,9 +71,10 @@ function ingresar(){
 
 function cambiarLimiteDeExtraccion() {
     var nuevoLimite = prompt("Ingrese el nuevo limite de extracción");
-    nuevoLimite = parseInt(nuevoLimite);
-    limiteExtraccion = nuevoLimite;
-    actualizarLimiteEnPantalla();
+    if(nuevoLimite != null){
+        limiteExtraccion = nuevoLimite;
+        actualizarLimiteEnPantalla();
+    }
 }
 
 function extraerDinero() {
@@ -83,7 +85,7 @@ function extraerDinero() {
 function depositarDinero() {
     var saldoAnterior = saldoCuenta;
     var sumaDinero = consultarSuma();
-    if(sumaDinero == Number(sumaDinero)){
+    if(sumaDinero != null){
         saldoCuenta += sumaDinero;
         actualizarSaldoEnPantalla();
         alert("Usted deposito: " + sumaDinero 
@@ -133,6 +135,7 @@ function transferirDinero() {
 
 function iniciarSesion() {
     nombreUsuario = prompt("Ingresa el nombre de tu usuario");
+    codigoIngresado = prompt("Ingresa el codigo de seguridad");
 }
 
 //Funciones que actualizan el valor de las variables en el HTML
