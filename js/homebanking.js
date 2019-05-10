@@ -28,9 +28,10 @@ function retenerDinero(){
 //Funcion para consultar una suma de dinero determinada por el usuario
 function consultarSuma(){
     var sumaDinero = prompt("Indique la cantidad");
-    if(isNaN(sumaDinero)){
+    if(sumaDinero !== null && !isNaN(sumaDinero)){
+        sumaDinero = parseInt(sumaDinero);
         return sumaDinero;
-    } else alert("El valor ingresado no es valido"); 
+    } else return null;
 }
 
 //Función para sustraer un valor de la cuenta
@@ -72,33 +73,37 @@ function restarSuma(sumaDinero, tipoExtraccion, servicio){
     }
 }
 
+//Funcion para el cambio de limite de extracción
 function cambiarLimiteDeExtraccion() {
     var nuevoLimite = prompt("Ingrese el nuevo limite de extracción");
-    if(nuevoLimite != null){
+    if(nuevoLimite !== null && !isNaN(nuevoLimite)){
         limiteExtraccion = nuevoLimite;
         actualizarLimiteEnPantalla();
-    }
+    } else alert("El valor ingresado no es valido");
 }
 
+//Funcion para las extracciones de billetes del cajero
 function extraerDinero() {
     var sumaDinero = consultarSuma();
-    restarSuma(sumaDinero, "extraccion");
+    if(sumaDinero !== null){
+        restarSuma(sumaDinero, "extraccion");
+    }else alert("El valor ingresado no es valido");
 }
 
+//Funcion para el ingreso de dinero a la cuenta
 function depositarDinero() {
     var saldoAnterior = saldoCuenta;
     var sumaDinero = consultarSuma();
-    if(sumaDinero != null){
+    if(sumaDinero !== null){
         saldoCuenta += sumaDinero;
         actualizarSaldoEnPantalla();
         alert("Usted deposito: " + sumaDinero 
               + "\nSu saldo anterior: " + saldoAnterior
               + "\nSu saldo actual: " + saldoCuenta);
-    } else {
-        alert("El valor ingresado no es valido");
-    }
+    } else alert("El valor ingresado no es valido");
 }
 
+//Funcion para el pago de servicios previamente cargados
 function pagarServicio() {
     var sumaDinero = 0;
     var servicio;
@@ -130,12 +135,15 @@ function pagarServicio() {
     }
 }
 
+//Funcion para la transferencia entre cuentas registradas
 function transferirDinero() {
     var sumaDinero = consultarSuma();
-    restarSuma(sumaDinero, "transferir");
-
+    if(sumaDinero !== null){
+        restarSuma(sumaDinero, "transferir");
+    } else alert("El valor ingresado no es valido");
 }
 
+//Funcion para ingresar datos de usuario
 function iniciarSesion() {
     nombreUsuario = prompt("Ingresa el nombre de tu usuario");
     codigoIngresado = prompt("Ingresa el codigo de seguridad" + "\n(Para testing = 1111)");
