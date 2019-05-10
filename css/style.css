@@ -84,7 +84,6 @@ body {
          -o-transition: all .6s ease-in-out;
             transition: all .6s ease-in-out;
     text-align: left;
-    vertical-align: text-bottom;
 
     color: #666;
     border: 0;

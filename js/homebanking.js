@@ -6,6 +6,8 @@ var valorAgua = 350;
 var valorLuz = 210;
 var valorInternet = 570;
 var valorTelefono = 425;
+var cuentaAmiga1 = 1234567;
+var cuentaAmiga2 = 7654321;
 
 //Ejecución de las funciones que actualizan los valores de las variables en el HTML.
 window.onload = function() {
@@ -49,6 +51,12 @@ function restarSuma(sumaDinero, tipoExtraccion, servicio){
                     + "\nSu saldo actual: " + saldoCuenta);
                 actualizarSaldoEnPantalla();
                 break;
+            case "transferir" :
+                var cuentaIngresada = prompt("Ingresar cuenta a transferir");
+                if(cuentaIngresada == cuentaAmiga1 || cuentaIngresada == cuentaAmiga2){
+                    saldoCuenta -= sumaDinero;
+                    actualizarSaldoEnPantalla();
+                }else alert("Solo puede transferir a una cuenta amiga");
         }
     }else{
         alert("La cuenta no posee fondos suficientes");
@@ -117,6 +125,8 @@ function pagarServicio() {
 }
 
 function transferirDinero() {
+    var sumaDinero = consultarSuma();
+    restarSuma(sumaDinero, "transferir");
 
 }
 
